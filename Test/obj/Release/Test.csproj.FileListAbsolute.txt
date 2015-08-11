@@ -1,0 +1,70 @@
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\bin\Release\Test.pdb
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\Test.Properties.Resources.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\Test.csproj.GenerateResource.Cache
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\Test.pdb
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\Test.主程式.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\bin\Release\Test.exe
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\Test.exe
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\bin\Release\Test.exe.config
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\bin\Release\zh-TW\Test.resources.dll
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\zh-TW\Test.resources.dll
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\DownloadProgressBar1.minecraft.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\Test\Test\obj\Release\DownloadProgressBar1.minecraft.zh-TW.resources
+M:\Test\Test\bin\Release\Test.exe.config
+M:\Test\Test\bin\Release\Test.exe
+M:\Test\Test\bin\Release\Test.pdb
+M:\Test\Test\bin\Release\zh-TW\Test.resources.dll
+M:\Test\Test\bin\Release\ICSharpCode.SharpZipLib.dll
+M:\Test\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+M:\Test\Test\obj\Release\Test.主程式.resources
+M:\Test\Test\obj\Release\DownloadProgressBar1.minecraft.resources
+M:\Test\Test\obj\Release\Test.Properties.Resources.resources
+M:\Test\Test\obj\Release\DownloadProgressBar1.minecraft.zh-TW.resources
+M:\Test\Test\obj\Release\Test.csproj.GenerateResource.Cache
+M:\Test\Test\obj\Release\zh-TW\Test.resources.dll
+M:\Test\Test\obj\Release\Test.exe
+M:\Test\Test\obj\Release\Test.pdb
+K:\Test\Test\bin\Release\Test.exe.config
+K:\Test\Test\bin\Release\Test.exe
+K:\Test\Test\bin\Release\Test.pdb
+K:\Test\Test\bin\Release\zh-TW\Test.resources.dll
+K:\Test\Test\bin\Release\ICSharpCode.SharpZipLib.dll
+K:\Test\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+K:\Test\Test\obj\Release\Test.主程式.resources
+K:\Test\Test\obj\Release\DownloadProgressBar1.minecraft.resources
+K:\Test\Test\obj\Release\Test.Properties.Resources.resources
+K:\Test\Test\obj\Release\DownloadProgressBar1.minecraft.zh-TW.resources
+K:\Test\Test\obj\Release\Test.csproj.GenerateResource.Cache
+K:\Test\Test\obj\Release\zh-TW\Test.resources.dll
+K:\Test\Test\obj\Release\Test.exe
+K:\Test\Test\obj\Release\Test.pdb
+J:\Test\Test\bin\Release\Test.exe.config
+J:\Test\Test\obj\Release\Test.exe
+J:\Test\Test\obj\Release\Test.pdb
+J:\Test\Test\bin\Release\Test.exe
+J:\Test\Test\bin\Release\Test.pdb
+J:\Test\Test\bin\Release\zh-TW\Test.resources.dll
+J:\Test\Test\bin\Release\ICSharpCode.SharpZipLib.dll
+J:\Test\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+J:\Test\Test\obj\Release\Test.主程式.resources
+J:\Test\Test\obj\Release\DownloadProgressBar1.minecraft.resources
+J:\Test\Test\obj\Release\Test.Properties.Resources.resources
+J:\Test\Test\obj\Release\DownloadProgressBar1.minecraft.zh-TW.resources
+J:\Test\Test\obj\Release\Test.csproj.GenerateResource.Cache
+J:\Test\Test\obj\Release\zh-TW\Test.resources.dll
+C:\Users\partm\Desktop\Test\Test\bin\Release\Test.exe.config
+C:\Users\partm\Desktop\Test\Test\obj\Release\Test.exe
+C:\Users\partm\Desktop\Test\Test\obj\Release\Test.pdb
+C:\Users\partm\Desktop\Test\Test\bin\Release\Test.exe
+C:\Users\partm\Desktop\Test\Test\bin\Release\Test.pdb
+C:\Users\partm\Desktop\Test\Test\bin\Release\zh-TW\Test.resources.dll
+C:\Users\partm\Desktop\Test\Test\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\partm\Desktop\Test\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+C:\Users\partm\Desktop\Test\Test\obj\Release\Test.主程式.resources
+C:\Users\partm\Desktop\Test\Test\obj\Release\DownloadProgressBar1.minecraft.resources
+C:\Users\partm\Desktop\Test\Test\obj\Release\Test.Properties.Resources.resources
+C:\Users\partm\Desktop\Test\Test\obj\Release\DownloadProgressBar1.minecraft.zh-TW.resources
+C:\Users\partm\Desktop\Test\Test\obj\Release\Test.csproj.GenerateResource.Cache
+C:\Users\partm\Desktop\Test\Test\obj\Release\zh-TW\Test.resources.dll
