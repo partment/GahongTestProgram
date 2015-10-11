@@ -77,7 +77,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(455, 217);
             this.webBrowser1.TabIndex = 2;
-            this.webBrowser1.Url = new System.Uri("http://cloud.soside.tk/uphistory.html", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("https://partment.ga/update", System.UriKind.Absolute);
             this.webBrowser1.Visible = false;
             // 
             // backgroundWorker1

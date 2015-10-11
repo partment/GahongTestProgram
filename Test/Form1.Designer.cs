@@ -244,7 +244,6 @@ namespace Test
             this.MaximizeBox = false;
             this.Name = "主程式";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "嘎泓的測試程式集 R1.5.3 (此程式只作為學術性研究)";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.主程式_Closing);
             this.Load += new System.EventHandler(this.主程式_Load);
             this.ResumeLayout(false);

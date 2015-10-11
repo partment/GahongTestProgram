@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System.Net;
-using System.Diagnostics;
 
 namespace DownloadProgressBar1
 {
@@ -21,12 +14,7 @@ namespace DownloadProgressBar1
 		{
 			InitializeComponent();
             backgroundWorker1.WorkerSupportsCancellation = true;
-            backgroundWorker2.WorkerSupportsCancellation = true;
-            backgroundWorker3.WorkerSupportsCancellation = true;
-            backgroundWorker4.WorkerSupportsCancellation = true;
-            backgroundWorker5.WorkerSupportsCancellation = true;
 		}
-        int z;
         private static void ExtractZip(string SourceFile, string TargetDir, string Password)
         {
             FastZip oZip = new FastZip();
@@ -49,12 +37,7 @@ namespace DownloadProgressBar1
             }
         }
 
-        public static void ExtractZip(string SourceFile, string TargetDir)
-        {
-            ExtractZip(SourceFile, TargetDir, "");
-        }
-
-        private void x(string sUrlToReadFileFrom, string x)
+        private void x(string sUrlToReadFileFrom)
         {
             int iLastIndex = sUrlToReadFileFrom.LastIndexOf('/');
             string sDownloadFileName = sUrlToReadFileFrom.Substring(iLastIndex + 1, (sUrlToReadFileFrom.Length - iLastIndex - 1));
@@ -84,7 +67,7 @@ namespace DownloadProgressBar1
                         byte[] byteBuffer = new byte[iSize];
                         while ((iByteSize = streamRemote.Read(byteBuffer, 0, byteBuffer.Length)) > 0)
                         {
-                            if (backgroundWorker1.CancellationPending || backgroundWorker2.CancellationPending || backgroundWorker3.CancellationPending || backgroundWorker4.CancellationPending || backgroundWorker5.CancellationPending)
+                            if (backgroundWorker1.CancellationPending)
                             {
                                 break;
                             }
@@ -99,26 +82,7 @@ namespace DownloadProgressBar1
                             int iProgressPercentage = (int)(dProgressPercentage * 100);
 
                             // update the progress bar
-                            if (x == "1")
-                            {
                                 backgroundWorker1.ReportProgress(iProgressPercentage);
-                            }
-                            if (x == "2")
-                            {
-                                backgroundWorker2.ReportProgress(iProgressPercentage);
-                            }
-                            if (x == "3")
-                            {
-                                backgroundWorker3.ReportProgress(iProgressPercentage);
-                            }
-                            if (x == "4")
-                            {
-                                backgroundWorker4.ReportProgress(iProgressPercentage);
-                            }
-                            if (x == "5")
-                            {
-                                backgroundWorker5.ReportProgress(iProgressPercentage);
-                            }
                         }
 
                         // clean up the file stream
@@ -135,12 +99,16 @@ namespace DownloadProgressBar1
 		{
             if (!backgroundWorker1.CancellationPending)
             {
-                x("http://downloads.sourceforge.net/project/partment/mc1.8.zip", "1");
+                x("http://sourceforge.net/projects/partment/files/pack.zip");
                 if (!backgroundWorker1.CancellationPending)
                 {
-                    string SourceFile = location + "\\mc1.8.zip";
-                    ExtractZip(SourceFile, @"C:\", "");
-                    z = 1;
+                    string SourceFile = location + "\\pack.zip";
+                    Directory.CreateDirectory(@"C:\ptminecraft");
+                    ExtractZip(SourceFile, @"C:\ptminecraft", "");
+                    string des = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                    WebClient wc = new WebClient();
+                    wc.DownloadFile("http://sourceforge.net/projects/partment/files/minecraft.lnk", des + "\\啟動Minecraft.lnk");
+                    MessageBox.Show("安裝完畢", "提示");
                 }
             }
             
@@ -153,189 +121,32 @@ namespace DownloadProgressBar1
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (z == 1)
-            {
-                backgroundWorker2.RunWorkerAsync();
-                z = 0;
-            }
-        }
+            btnTestDownload.Visible = true;
+            label2.Visible = false;
+            button1.Visible = false;
+            progressBar1.Value = 0;
 
-        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
-        {
-            if (!backgroundWorker2.CancellationPending)
-            {
-                x("http://downloads.sourceforge.net/project/partment/mcob1.zip", "2");
-                if (!backgroundWorker2.CancellationPending)
-                {
-                    string SourceFile = location + "\\mcob1.zip";
-                    ExtractZip(SourceFile, @"C:\mc\.minecraft\assets\objects", "");
-                    z = 1;
-                }
-            }
-        }
-
-        private void backgroundWorker2_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar2.Value = e.ProgressPercentage;
-        }
-
-        private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (z == 1)
-            {
-                backgroundWorker3.RunWorkerAsync();
-                z = 0;
-            }
-        }
-
-        private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
-        {
-            if (!backgroundWorker3.CancellationPending)
-            {
-                x("http://downloads.sourceforge.net/project/partment/mcob2.zip", "3");
-                if (!backgroundWorker3.CancellationPending)
-                {
-                    string SourceFile = location + "\\mcob2.zip";
-                    ExtractZip(SourceFile, @"C:\mc\.minecraft\assets\objects", "");
-                    z = 1;
-                }
-            }
-        }
-
-        private void backgroundWorker3_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar3.Value = e.ProgressPercentage;
-        }
-
-        private void backgroundWorker3_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (z == 1)
-            {
-                string des = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-                WebClient wc = new WebClient();
-                wc.DownloadFile("http://soside.tk/launcher1.8.lnk", des + "\\啟動Minecraft.lnk");
-                MessageBox.Show("安裝完畢!將會開啟安裝目錄，已經在桌面上建立捷徑!", "完成");
-                System.IO.File.Delete(location + "\\mc1.8TMI.zip");
-                System.IO.File.Delete(location + "\\mc1.8.zip");
-                System.IO.File.Delete(location + "\\mcob1.zip");
-                System.IO.File.Delete(location + "\\mcob2.zip");
-                progressBar1.Value = 0;
-                progressBar2.Value = 0;
-                progressBar3.Value = 0;
-                label1.Visible = true;
-                comboBox1.Visible = true;
-                btnTestDownload.Visible = true;
-                label2.Visible = false;
-                button1.Visible = false;
-                z = 0;
-            }
-        }
-
-        private void backgroundWorker4_DoWork(object sender, DoWorkEventArgs e)
-        {
-            if (!backgroundWorker4.CancellationPending)
-            {
-                x("http://downloads.sourceforge.net/project/partment/mc1.8TMI.zip", "4");
-                if (!backgroundWorker4.CancellationPending)
-                {
-                    string SourceFile = location + "\\mc1.8TMI.zip";
-                    ExtractZip(SourceFile, @"C:\", "");
-                    z = 1;
-                }
-            } 
-        }
-
-        private void backgroundWorker4_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar1.Value = e.ProgressPercentage;
-        }
-
-        private void backgroundWorker4_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (z == 1)
-            {
-                backgroundWorker2.RunWorkerAsync();
-                z = 0;
-            }
-        }
-        private void backgroundWorker5_DoWork(object sender, DoWorkEventArgs e)
-        {
-            if (!backgroundWorker5.CancellationPending)
-            {
-                x("http://downloads.sourceforge.net/project/partment/mc.zip", "5");
-                if (!backgroundWorker5.CancellationPending)
-                {
-                    string SourceFile = location + "\\mc.zip";
-                    ExtractZip(SourceFile, @"C:\", "");
-                    z = 1;
-                }
-            }
-        }
-
-        private void backgroundWorker5_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar1.Value = e.ProgressPercentage;
-        }
-
-        private void backgroundWorker5_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (z == 1)
-            {
-                string des = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-                WebClient wc = new WebClient();
-                wc.DownloadFile("http://soside.tk/launcher.lnk", des + "\\啟動Minecraft.lnk");
-                MessageBox.Show("安裝完畢!將會開啟安裝目錄，已經在桌面上建立捷徑~", "完成");
-                System.IO.File.Delete(location + "\\mc.zip");
-                progressBar1.Value = 0;
-                label1.Visible = true;
-                comboBox1.Visible = true;
-                btnTestDownload.Visible = true;
-                label2.Visible = false;
-                button1.Visible = false;
-                z = 0;
-            }
         }
 
 		private void btnTestDownload_Click(object sender, EventArgs e)
 		{
-            string version = comboBox1.Text;
-            if (version != "")
+            string strFolderPath = @"C:\ptminecraft";
+            DirectoryInfo DIFO = new DirectoryInfo(strFolderPath);
+            if (DIFO.Exists)
             {
-                string strFolderPath = @"C:\mc";
-                DirectoryInfo DIFO = new DirectoryInfo(strFolderPath);
-                if (DIFO.Exists)
+                if (MessageBox.Show("之前已經有安裝過Minecraft\n按確定則刪除以前的版本，安裝您剛才選擇的版本\n(安裝前請先確定地圖檔、資源包都備份了)\n按取消則取消安裝", "覆蓋安裝", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    if (MessageBox.Show("之前已經有安裝過Minecraft\n按確定則刪除以前的版本，安裝您剛才選擇的版本\n(安裝前請先確定地圖檔、資源包都備份了)\n按取消則取消安裝", "覆蓋安裝", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                    {
-                        DIFO.Delete(true);
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                label1.Visible = false;
-                comboBox1.Visible = false;
-                btnTestDownload.Visible = false;
-                label2.Visible = true;
-                button1.Visible = true;
-                if (version == "1.8")
-                {
-                    backgroundWorker1.RunWorkerAsync();
-                }
-                else if (version == "1.8(TMI)")
-                {
-                    backgroundWorker4.RunWorkerAsync();
+                    DIFO.Delete(true);
                 }
                 else
                 {
-                    backgroundWorker5.RunWorkerAsync();
+                    return;
                 }
             }
-            else
-            {
-                MessageBox.Show("請先選取版本", "錯誤");
-            }
+            btnTestDownload.Visible = false;
+            label2.Visible = true;
+            button1.Visible = true;
+            backgroundWorker1.RunWorkerAsync();
             
 		}
 
@@ -355,7 +166,7 @@ namespace DownloadProgressBar1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.No;
+            reset();
         }
 
 
@@ -366,31 +177,10 @@ namespace DownloadProgressBar1
                 backgroundWorker1.CancelAsync();
                 //backgroundWorker1 = null;
             }
-            if (backgroundWorker2.IsBusy)
-            {
-                backgroundWorker2.CancelAsync();
-                //backgroundWorker2 = null;
-            }
-            if (backgroundWorker3.IsBusy)
-            {
-                backgroundWorker3.CancelAsync();
-                //backgroundWorker3 = null;
-            }
-            if (backgroundWorker4.IsBusy)
-            {
-                backgroundWorker4.CancelAsync();
-                //backgroundWorker4 = null;
-            }
-            if (backgroundWorker5.IsBusy)
-            {
-                backgroundWorker5.CancelAsync();
-                //backgroundWorker5 = null;
-            }
-            label1.Visible = true;
-            comboBox1.Visible = true;
             btnTestDownload.Visible = true;
             label2.Visible = false;
             button1.Visible = false;
+            progressBar1.Value = 0;
         }
-	}
+    }
 }

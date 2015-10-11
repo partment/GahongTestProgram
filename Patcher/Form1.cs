@@ -64,7 +64,7 @@ namespace Patcher
                 version = sa.ReadLine();            // 讀取文字到 line 變數
             }
             sa.Close();
-            WebRequest myRequest = WebRequest.Create(@"https://partment.me/mod?mod=getLatestVersion");
+            WebRequest myRequest = WebRequest.Create(@"https://partment.ga/mod?mod=getLatestVersion");
             myRequest.Method = "GET";
             WebResponse myResponse = myRequest.GetResponse();
             StreamReader sr = new StreamReader(myResponse.GetResponseStream());

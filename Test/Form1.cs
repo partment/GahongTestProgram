@@ -27,7 +27,7 @@ namespace Test
 
         Timer t = new Timer();
 
-        string version = "R1.6.2";
+        string version = "R1.6.3";
 
         private void 主程式_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -169,7 +169,7 @@ namespace Test
 
         private void button6_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://partment.me");
+            System.Diagnostics.Process.Start("https://partment.ga");
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -183,7 +183,7 @@ namespace Test
 
         private void button10_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("程式版本 : "+version+"\n作者 : 嘎泓\n授權 : 此程式使用MIT授權條款，詳見官方網站".ToString(), "關於此程式");
+            MessageBox.Show("程式版本 : "+version+"\n作者 : 嘎泓\n授權 : 此程式使用MIT授權條款，詳見官方網站\n此程序只做學術性研究".ToString(), "關於此程式");
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -193,7 +193,7 @@ namespace Test
 
         private void button3_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://partment.me/update");
+            System.Diagnostics.Process.Start("http://partment.ga/update");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -206,7 +206,7 @@ namespace Test
             }
             else
             {
-                System.Environment.Exit(System.Environment.ExitCode);
+                Application.Exit();
             }
         }
 
@@ -214,7 +214,7 @@ namespace Test
 
         private void UpdateCheck_DoWork(object sender, DoWorkEventArgs e)
         {
-            WebRequest myRequest = WebRequest.Create(@"https://partment.me/mod?mod=getLatestVersion");
+            WebRequest myRequest = WebRequest.Create(@"https://partment.ga/mod?mod=getLatestVersion");
             myRequest.Method = "GET";
             WebResponse myResponse = myRequest.GetResponse();
             StreamReader sr = new StreamReader(myResponse.GetResponseStream());

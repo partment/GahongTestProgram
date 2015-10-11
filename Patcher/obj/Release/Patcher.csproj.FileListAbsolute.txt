@@ -31,3 +31,16 @@ K:\Test\Patcher\obj\Release\Patcher.download.resources
 K:\Test\Patcher\obj\Release\Patcher.Form1.resources
 K:\Test\Patcher\obj\Release\Patcher.Properties.Resources.resources
 K:\Test\Patcher\obj\Release\Patcher.csproj.GenerateResource.Cache
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\bin\Release\download.resx
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\bin\Release\download.cs
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\bin\Release\download.Designer.cs
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\bin\Release\Patcher.exe
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\bin\Release\Patcher.pdb
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\obj\Release\Patcher.csprojResolveAssemblyReference.cache
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\obj\Release\Patcher.download.resources
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\obj\Release\Patcher.Form1.resources
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\obj\Release\Patcher.Properties.Resources.resources
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\obj\Release\Patcher.csproj.GenerateResource.Cache
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\obj\Release\Patcher.exe
+C:\Users\partm\Desktop\GahongTestProgram\Patcher\obj\Release\Patcher.pdb
