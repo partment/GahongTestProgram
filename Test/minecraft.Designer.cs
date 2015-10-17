@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -60,7 +61,7 @@
             this.btnTestDownload.FlatAppearance.BorderSize = 0;
             this.btnTestDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTestDownload.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnTestDownload.Location = new System.Drawing.Point(184, 52);
+            this.btnTestDownload.Location = new System.Drawing.Point(247, 52);
             this.btnTestDownload.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTestDownload.Name = "btnTestDownload";
             this.btnTestDownload.Size = new System.Drawing.Size(97, 40);
@@ -103,11 +104,24 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "包含1.7.10和1.8.8";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.comboBox1.Items.Add("選擇安裝位置");
+            this.comboBox1.Location = new System.Drawing.Point(130, 70);
+            this.comboBox1.MaxDropDownItems = 30;
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(111, 24);
+            this.comboBox1.TabIndex = 13;
+            this.comboBox1.SelectedIndex = 0;
+            // 
             // minecraft
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 101);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -123,6 +137,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "安裝Minecraft";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.minecraft_FormClosing);
+            this.Load += new System.EventHandler(this.minecraft_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +151,7 @@
         public System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

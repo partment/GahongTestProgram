@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using DownloadProgressBar1;
+using System.Security.Cryptography;
 
 namespace Test
 {
@@ -27,7 +21,7 @@ namespace Test
 
         Timer t = new Timer();
 
-        string version = "R1.6.3";
+        string version = "R1.6.4";
 
         private void 主程式_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -49,37 +43,13 @@ namespace Test
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            bool  a = checkBox1.Checked;
-            bool  b = checkBox2.Checked;
-            if (a)
-            {
-                label2.Text = "你的狀態 : 無恥";
-                if (b)
-                {
-                    label2.Text = "你的狀態 : 變態加無恥";
-                }
-            }
-            else
-            {
-                if (b)
-                {
-                    label2.Text = "你的狀態 : 變態";
-                }
-                else
-                {
-                    label2.Text = "你的狀態 : 無";
-                }
-            }
-        }
-
         private void 主程式_Load(object sender, EventArgs e)
         {
             t.Interval = 1000;  //in milliseconds
             t.Tick += new EventHandler(this.t_Tick);
             t.Start();
             UpdateCheck.RunWorkerAsync();
+            PatcherCheck.RunWorkerAsync();
             StreamWriter sw = new StreamWriter(@Application.StartupPath + "\\version.txt");
             sw.WriteLine(version);            // 寫入文字
             sw.Close();           
@@ -140,31 +110,6 @@ namespace Test
         {
             minecraft myDialog = new minecraft();
             DialogResult dialogResult = myDialog.ShowDialog(this);
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            bool a = checkBox2.Checked;
-            bool b = checkBox1.Checked;
-            if (a)
-            {
-                label2.Text = "你的狀態 : 變態";
-                if (b)
-                {
-                    label2.Text = "你的狀態 : 變態加無恥";
-                }
-            }
-            else
-            {
-                if (b)
-                {
-                    label2.Text = "你的狀態 : 無恥";
-                }
-                else
-                {
-                    label2.Text = "你的狀態 : 無";
-                }
-            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -233,6 +178,45 @@ namespace Test
         private void button11_Click(object sender, EventArgs e)
         {
             MessageBox.Show("還在開發唷~","聊天室");
+        }
+
+        private void PatcherCheck_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string path = Application.StartupPath+"\\Patcher.exe";
+            string des = Application.StartupPath;
+            if (File.Exists(path))
+            {
+                string md5 = string.Empty;
+                HashAlgorithm algorithm = MD5.Create();
+                byte[] Hash = algorithm.ComputeHash(File.ReadAllBytes(path));
+                foreach (byte b in Hash)
+                {
+                    md5 += b.ToString("X2");
+                }
+                WebRequest myRequest = WebRequest.Create(@"https://partment.ga/mod?mod=getPatcherMD5");
+                myRequest.Method = "GET";
+                WebResponse myResponse = myRequest.GetResponse();
+                StreamReader sr = new StreamReader(myResponse.GetResponseStream());
+                string patchermd5 = sr.ReadToEnd();
+                if (md5 != patchermd5)
+                {
+                    button9.Text = "正在處理...";
+                    button9.Enabled = false;
+                    WebClient wc = new WebClient();
+                    wc.DownloadFile("http://sourceforge.net/projects/partment/files/Patcher.exe", des + "\\Patcher.exe");
+                    button9.Text = "檢查更新";
+                    button9.Enabled = true;
+                }
+            }else
+            {
+                button9.Text = "正在處理...";
+                button9.Enabled = false;
+                WebClient wc = new WebClient();
+                wc.DownloadFile("http://sourceforge.net/projects/partment/files/Patcher.exe", des + "\\Patcher.exe");
+                button9.Text = "檢查更新";
+                button9.Enabled = true;
+            }
+            
         }
     }
 }

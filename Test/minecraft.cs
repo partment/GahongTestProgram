@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
-using System.Net;
+using IWshRuntimeLibrary;
 
 namespace DownloadProgressBar1
 {
@@ -21,7 +21,7 @@ namespace DownloadProgressBar1
             try
             {
                 //判斷ZIP檔案是否存在
-                if (File.Exists(SourceFile) == false)
+                if (System.IO.File.Exists(SourceFile) == false)
                 {
                     throw new Exception("要解壓縮的檔案【" + SourceFile + "】不存在，無法執行");
                 }
@@ -95,7 +95,9 @@ namespace DownloadProgressBar1
             }
         }
 
-		private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        string path;
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
 		{
             if (!backgroundWorker1.CancellationPending)
             {
@@ -103,11 +105,19 @@ namespace DownloadProgressBar1
                 if (!backgroundWorker1.CancellationPending)
                 {
                     string SourceFile = location + "\\pack.zip";
-                    Directory.CreateDirectory(@"C:\ptminecraft");
-                    ExtractZip(SourceFile, @"C:\ptminecraft", "");
+                    Directory.CreateDirectory(path+"ptminecraft");
+                    ExtractZip(SourceFile, path+"ptminecraft", "");
                     string des = System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-                    WebClient wc = new WebClient();
-                    wc.DownloadFile("http://sourceforge.net/projects/partment/files/minecraft.lnk", des + "\\啟動Minecraft.lnk");
+                    //WebClient wc = new WebClient();
+                    //wc.DownloadFile("http://sourceforge.net/projects/partment/files/minecraft.lnk", des + "\\啟動Minecraft.lnk");
+                    string shortcutLocation = System.IO.Path.Combine(des, "啟動Minecraft" + ".lnk");
+                    WshShell shell = new WshShell();
+                    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
+                    shortcut.Description = "開啟Minecraft啟動器";   // The description of the shortcut
+                    shortcut.IconLocation = path + "ptminecraft\\HMCL.jar";           // The icon of the shortcut
+                    shortcut.TargetPath = path + "ptminecraft\\HMCL.jar";                 // The path of the file that will launch when the shortcut is run
+                    shortcut.WorkingDirectory = path + "ptminecraft";
+                    shortcut.Save();
                     MessageBox.Show("安裝完畢", "提示");
                 }
             }
@@ -121,6 +131,7 @@ namespace DownloadProgressBar1
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            comboBox1.Visible = true;
             btnTestDownload.Visible = true;
             label2.Visible = false;
             button1.Visible = false;
@@ -130,7 +141,13 @@ namespace DownloadProgressBar1
 
 		private void btnTestDownload_Click(object sender, EventArgs e)
 		{
-            string strFolderPath = @"C:\ptminecraft";
+            path = comboBox1.Text;
+            if (path == "選擇安裝位置")
+            {
+                MessageBox.Show("請選擇安裝位置", "警告");
+                return;
+            }
+            string strFolderPath = path + "ptminecraft";
             DirectoryInfo DIFO = new DirectoryInfo(strFolderPath);
             if (DIFO.Exists)
             {
@@ -143,10 +160,18 @@ namespace DownloadProgressBar1
                     return;
                 }
             }
+            comboBox1.Visible = false;
             btnTestDownload.Visible = false;
             label2.Visible = true;
             button1.Visible = true;
-            backgroundWorker1.RunWorkerAsync();
+            try
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }catch(Exception)
+            {
+                backgroundWorker1.CancelAsync();
+                backgroundWorker1.RunWorkerAsync();
+            }
             
 		}
 
@@ -177,10 +202,23 @@ namespace DownloadProgressBar1
                 backgroundWorker1.CancelAsync();
                 //backgroundWorker1 = null;
             }
+            comboBox1.Visible = true;
             btnTestDownload.Visible = true;
             label2.Visible = false;
             button1.Visible = false;
             progressBar1.Value = 0;
+        }
+
+        private void minecraft_Load(object sender, EventArgs e)
+        {
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            foreach (DriveInfo drive in drives)
+            {
+                if (drive.IsReady)
+                {
+                    comboBox1.Items.Add(drive.ToString());
+                }
+            }
         }
     }
 }
